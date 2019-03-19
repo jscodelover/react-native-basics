@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import {
   View,
@@ -7,7 +8,10 @@ import {
   TouchableHighlight
 } from "react-native";
 
-export default class ListDisplay extends React.Component {
+type State = {
+  data: Array<any>
+};
+export default class ListDisplay extends React.Component<State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -20,6 +24,13 @@ export default class ListDisplay extends React.Component {
       .then(result => this.setState({ data: result }))
       .catch(err => console.log(err));
   }
+
+  detailView = item => {
+    this.props.navigation.navigate("DetailDisplay", {
+      user: item
+    });
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,7 +40,7 @@ export default class ListDisplay extends React.Component {
           renderItem={({ item, index }) => (
             <TouchableHighlight
               underlayColor="#ccc"
-              onPress={() => console.log("press")}
+              onPress={() => this.detailView(item)}
             >
               <Text style={styles.item}>
                 {index + 1}. {item.name}

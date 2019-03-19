@@ -5,19 +5,22 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 import StatePropsExample from "./app/StatePropsExample";
 import ListDisplay from "./app/ListDisplay";
 import DetailDisplay from "./app/DetailDisplay";
+import NavigationButtons from "./app/NavigationButtons";
 
-const AppNavigator = createStackNavigator({
-  DetailDisplay: {
-    screen: DetailDisplay
+const AppNavigator = createStackNavigator(
+  {
+    ListDisplay: { screen: ListDisplay },
+    DetailDisplay: { screen: DetailDisplay },
+    StatePropsExample: {
+      screen: () => <StatePropsExample message="Counter App" />
+    },
+    NavigationButtons: { screen: NavigationButtons }
+  },
+  {
+    initialRouteName: "NavigationButtons"
   }
-});
+);
 
-export default createAppContainer(AppNavigator);
+const App = createAppContainer(AppNavigator);
 
-// export default class App extends Component {
-//   render() {
-//     // return <StatePropsExample message="My Counter App" />;
-//     // return <ListDisplay />;
-//     return <DetailDisplay />;
-//   }
-// }
+export default App;

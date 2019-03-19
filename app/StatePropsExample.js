@@ -2,8 +2,16 @@
 import React from "react";
 import { View, Text, Button, StyleSheet } from "react-native";
 
-export default class StatePropsExample extends React.Component {
-  constructor(props) {
+type Props = {
+  message: string
+};
+
+type State = {
+  counter: number
+};
+
+export default class StatePropsExample extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       counter: 0
