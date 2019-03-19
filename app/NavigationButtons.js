@@ -30,6 +30,12 @@ export default function NavigationButtons(props) {
             onPress={() => props.navigation.navigate("ListDisplay")}
           />
         </View>
+        <View style={{ margin: 5 }}>
+          <Button
+            title="Location App"
+            onPress={() => props.navigation.navigate("Location")}
+          />
+        </View>
       </View>
     </View>
   );
